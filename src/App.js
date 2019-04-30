@@ -112,6 +112,7 @@ manipulateCity(){
         </TextField>
         <Button onClick={() => this.manipulateCity()}>Submit</Button>
         <p className="Output">{displayMessage}</p>
+        <p className="contact">contact: greggrunwald@gmail.com</p>
       </div>
     );
   }
