@@ -52,16 +52,22 @@ setData() {
   //console.log(FTemp)
   if(this.state.city === '')
     message = 'To get a pants prediction, enter your current city in the box above.'
-  else if(FTemp < 50 && FTemp >= 32)
-    message = "You should wear pants today."
+  else if(FTemp < 50 && FTemp >= 40)
+    message = "You should wear/bring pants today. Just in case."
+  else if(FTemp < 40 && FTemp >= 30)
+    message = "You should wear the pant."
   else if(FTemp <= 10)
     message = "You sure you wanna practice today??? Wear a s***load of clothes"
-  else if(FTemp < 32 && FTemp > 10)
-    message = "You should definitely wear pants today, and bring multiple layers."
-  else if(FTemp >= 50 && FTemp <= 85)
+  else if(FTemp < 30 && FTemp > 10)
+    message = "You should definitely wear pants today. Lots of pant."
+  else if(FTemp >= 50 && FTemp <= 58)
     message = "You don't need pants today! Hooray!"
-  else if(FTemp > 85)
+  else if (FTemp > 58 && FTemp <= 85)
+    message = "It's shorts weather, boiiiiiii!"
+  else if(FTemp > 85 && FTemp <=90)
     message = "It's hot as balls. You don't need pants."
+  else if(FTemp > 90)
+    message = "Achievement unlocked: Roasty Toasty"
   this.setState({displayMessage: message})
 }
 
