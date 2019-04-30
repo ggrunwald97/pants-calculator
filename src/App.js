@@ -28,10 +28,10 @@ update(city){
 
   var API_CALL;
   if (!(isNaN(city))) { // If the user enters a zip code (integer)
-    API_CALL = 'http://api.openweathermap.org/data/2.5/weather?zip='+city+',us&APPID='+OPENWEATHER_KEY
+    API_CALL = 'https://api.openweathermap.org/data/2.5/weather?zip='+city+',us&APPID='+OPENWEATHER_KEY
   }
   else { // if the user enters a city (string)
-    API_CALL = 'http://api.openweathermap.org/data/2.5/weather?q='+city+',usa&APPID='+OPENWEATHER_KEY
+    API_CALL = 'https://api.openweathermap.org/data/2.5/weather?q='+city+',usa&APPID='+OPENWEATHER_KEY
   }
   fetch(API_CALL)
     .then(this.handleErrors)
