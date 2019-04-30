@@ -41,7 +41,7 @@ update(city){
   
 printfunc(tempData) {
   this.setState({hits: tempData["current"]["temp_f"]})
-  console.log(JSON.stringify(tempData,null, "\t"))
+  //console.log(JSON.stringify(tempData,null, "\t"))
   this.setData()
 }
 
@@ -49,7 +49,7 @@ setData() {
   const FTemp = this.state.hits
   var message = ''
   this.setState({temperature: FTemp})
-  console.log(FTemp)
+  //console.log(FTemp)
   if(this.state.city === '')
     message = 'To get a pants prediction, enter your current city in the box above.'
   else if(FTemp < 50 && FTemp >= 32)
