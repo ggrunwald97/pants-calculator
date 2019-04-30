@@ -27,12 +27,8 @@ update(city){
   const OPENWEATHER_KEY = process.env.REACT_APP_OPENWEATHER_API_KEY;
 
   var API_CALL;
-  if (!(isNaN(city))) { // If the user enters a zip code (integer)
-    API_CALL = 'https://api.openweathermap.org/data/2.5/weather?zip='+city+',us&APPID='+OPENWEATHER_KEY
-  }
-  else { // if the user enters a city (string)
-    API_CALL = 'https://api.openweathermap.org/data/2.5/weather?q='+city+',usa&APPID='+OPENWEATHER_KEY
-  }
+    API_CALL = 'https://api.apixu.com/v1/current.json?key='+OPENWEATHER_KEY+'   &q='+city
+
   fetch(API_CALL)
     .then(this.handleErrors)
     .then(response => { return response.json()
@@ -44,18 +40,14 @@ update(city){
   }
   
 printfunc(tempData) {
-  console.log(tempData)
-  this.setState({hits: tempData["main"]["temp"]})
+  this.setState({hits: tempData["current"]["temp_f"]})
   console.log(JSON.stringify(tempData,null, "\t"))
   this.setData()
 }
 
 setData() {
-  const KTemp = this.state.hits
-  let FTemp = (KTemp -273.15)*(9/5) +32
+  const FTemp = this.state.hits
   var message = ''
-  FTemp = Math.round(FTemp)
-
   this.setState({temperature: FTemp})
   console.log(FTemp)
   if(this.state.city === '')
