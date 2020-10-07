@@ -33,9 +33,8 @@ handleErrors(response) {
 }
 
 update(city){
-  const OPENWEATHER_KEY = process.env.REACT_APP_OPENWEATHER_API_KEY;
-  const API_CALL = 'http://api.weatherstack.com/current?access_key='+OPENWEATHER_KEY+'&query='+city+'&units=f'
-
+  const API_KEY = process.env.REACT_APP_WEATHER_COMPONENT_API_KEY
+  const API_CALL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=imperial`
   fetch(API_CALL)
     .then(this.handleErrors)
     .then(response => { return response.json()
@@ -47,8 +46,7 @@ update(city){
   }
 
 printfunc(tempData) {
-  console.log(tempData.current.feelslike);
-  this.setState({hits: tempData.current.feelslike})
+  this.setState({hits: tempData.main.temp})
   this.setData()
 }
 
