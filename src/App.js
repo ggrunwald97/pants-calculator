@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
-import Button from '@material/react-button';
 import '@material/react-button/dist/button.css';
 import TextField, {Input} from '@material/react-text-field';
 import '@material/react-text-field/dist/text-field.css';
 import './App.css';
-import ReactWeather from 'react-open-weather';
 import 'react-open-weather/lib/css/ReactWeather.css';
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import Spacer from 'terra-spacer';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+
+const darkTheme = createMuiTheme({
+  palette: {
+    type: 'dark',
+  }
+});
+
 class App extends Component {
-  state = { 
+  state = {
     hits: '',
     temperature: '',
     displayMessage: 'To get a pants prediction, enter a city or zip code in the box above.',
@@ -25,9 +34,7 @@ handleErrors(response) {
 
 update(city){
   const OPENWEATHER_KEY = process.env.REACT_APP_OPENWEATHER_API_KEY;
-
-  var API_CALL;
-    API_CALL = 'https://api.apixu.com/v1/current.json?key='+OPENWEATHER_KEY+'   &q='+city
+  const API_CALL = 'http://api.weatherstack.com/current?access_key='+OPENWEATHER_KEY+'&query='+city+'&units=f'
 
   fetch(API_CALL)
     .then(this.handleErrors)
@@ -38,10 +45,10 @@ update(city){
       console.log(error);
     })
   }
-  
+
 printfunc(tempData) {
-  this.setState({hits: tempData["current"]["temp_f"]})
-  //console.log(JSON.stringify(tempData,null, "\t"))
+  console.log(tempData.current.feelslike);
+  this.setState({hits: tempData.current.feelslike})
   this.setData()
 }
 
@@ -49,7 +56,6 @@ setData() {
   const FTemp = this.state.hits
   var message = ''
   this.setState({temperature: FTemp})
-  //console.log(FTemp)
   if(this.state.city === '')
     message = 'To get a pants prediction, enter your current city in the box above.'
   else if(FTemp < 50 && FTemp >= 40)
@@ -81,37 +87,58 @@ manipulateCity(){
 }
 
   render() {
-    let { displayCity,
-          displayMessage } = this.state;
-  
+    let {
+          displayCity,
+          displayMessage,
+          hits
+        } = this.state;
+    const text =  hits ? `Today's temperature is ${hits}° F.` : ''
+
     return (
-      <div className="App">
-        <p className="Header-text">
-          Pants Calculator v2.0
-        </p>
-        <link rel="stylesheet" 
-          href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css" 
-          type="text/css"/>
-        <ReactWeather
-          forecast="5days"
-          unit="imperial"
-          apikey={process.env.REACT_APP_WEATHERCOMPONENT_API_KEY}
-          type="auto"
-        />
-        <TextField 
-          className="Textbox"
-          label="Enter city or zip code" 
-        >
-          <Input
-            className="Textfield"
-            value={displayCity}
-            onChange={(e) => this.setState({displayCity: e.currentTarget.value})}
-          />
-        </TextField>
-        <Button onClick={() => this.manipulateCity()}>Submit</Button>
-        <p className="Output">{displayMessage}</p>
-        <p className="contact">contact: greggrunwald@gmail.com</p>
-      </div>
+      <ThemeProvider theme={darkTheme}>
+        <div className="App">
+          <Spacer padding="large+1">
+            <Paper elevation={0}>
+                <p className="Header-text">
+                  Pants Calculator v2.1
+                </p>
+                <link rel="stylesheet"
+                  href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css"
+                  type="text/css"/>
+                <div>
+                  {text}
+                </div>
+                <Spacer paddingBottom="large+1">
+                  <Spacer isInlineBlock paddingRight="large+1">
+                    <TextField
+                      className="Textbox"
+                      label="Enter city or zip code"
+                    >
+                      <Input
+                        className="Textfield"
+                        value={displayCity}
+                        onChange={(e) => this.setState({displayCity: e.currentTarget.value})}
+                      />
+                    </TextField>
+                  </Spacer>
+                  <Spacer isInlineBlock>
+                    <Button
+                      onClick={() => this.manipulateCity()}
+                      variant="contained"
+                      color="primary"
+                    >
+                      Submit
+                    </Button>
+                  </Spacer>
+                </Spacer>
+          <Spacer paddingLeft="large+2" paddingRight="large+2" paddingBottom="large">
+            <p className="Output">{displayMessage}</p>
+            <p className="contact">contact: greggrunwald@gmail.com</p>
+          </Spacer>
+          </Paper>
+          </Spacer>
+        </div>
+      </ThemeProvider>
     );
   }
 }

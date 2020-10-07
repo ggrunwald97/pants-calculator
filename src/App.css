@@ -2,7 +2,7 @@
   text-align: center;
   font-size: 200%;
   min-height: 100vh;
-  background-image: linear-gradient(#5c6372, white)
+  background-image: linear-gradient(to right, #91a8da, rgb(100, 100, 100))
 }
 
 .Header-text {
@@ -12,12 +12,12 @@
   min-height: 50px;
   min-width: 400px;
   color: white;
-  border-radius: 20px;
+  border-radius: 5px;
 }
 
 .Output {
   color: white;
-  border-radius: 20px;
+  border-radius: 5px;
   background-image: linear-gradient(to right, #5cc0f9, #38b8ea);
   min-height: 60px;
   min-width: 400px;
@@ -26,13 +26,13 @@
 }
 
 .Textfield {
-  border-radius: 25px;
+  border-radius: 5px;
   color: black;
   margin: auto;
 }
 
 .Textbox {
-  border-radius: 25px;
+  border-radius: 5px;
   margin-top: 25px;
   color: black;
   min-width: 265px;
