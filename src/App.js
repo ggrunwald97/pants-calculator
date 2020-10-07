@@ -6,6 +6,7 @@ import './App.css';
 import 'react-open-weather/lib/css/ReactWeather.css';
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Spacer from 'terra-spacer';
+import Text from 'terra-text';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
@@ -97,42 +98,44 @@ manipulateCity(){
         <div className="App">
           <Spacer padding="large+1">
             <Paper elevation={0}>
-                <p className="Header-text">
-                  Pants Calculator v2.1
-                </p>
-                <link rel="stylesheet"
-                  href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css"
-                  type="text/css"/>
-                <div>
+              <p className="Header-text">
+                Pants Calculator v2.1
+              </p>
+              <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css"
+                type="text/css"/>
+              <Spacer>
+                <Text fontSize={24} isInlineBlock>
                   {text}
-                </div>
-                <Spacer paddingBottom="large+1">
-                  <Spacer isInlineBlock paddingRight="large+1">
-                    <TextField
-                      className="Textbox"
-                      label="Enter city or zip code"
-                    >
-                      <Input
-                        className="Textfield"
-                        value={displayCity}
-                        onChange={(e) => this.setState({displayCity: e.currentTarget.value})}
-                      />
-                    </TextField>
-                  </Spacer>
-                  <Spacer isInlineBlock>
-                    <Button
-                      onClick={() => this.manipulateCity()}
-                      variant="contained"
-                      color="primary"
-                    >
-                      Submit
-                    </Button>
-                  </Spacer>
+                </Text>
+              </Spacer>
+              <Spacer paddingBottom="large+1">
+                <Spacer isInlineBlock paddingRight="large+1">
+                  <TextField
+                    className="Textbox"
+                    label="Enter city or zip code"
+                  >
+                    <Input
+                      className="Textfield"
+                      value={displayCity}
+                      onChange={(e) => this.setState({displayCity: e.currentTarget.value})}
+                    />
+                  </TextField>
                 </Spacer>
-          <Spacer paddingLeft="large+2" paddingRight="large+2" paddingBottom="large">
-            <p className="Output">{displayMessage}</p>
-            <p className="contact">contact: greggrunwald@gmail.com</p>
-          </Spacer>
+                <Spacer isInlineBlock>
+                  <Button
+                    onClick={() => this.manipulateCity()}
+                    variant="contained"
+                    color="primary"
+                  >
+                    Submit
+                  </Button>
+                </Spacer>
+              </Spacer>
+            <Spacer paddingLeft="large+2" paddingRight="large+2" paddingBottom="large">
+              <p className="Output">{displayMessage}</p>
+              <p className="contact">contact: greggrunwald@gmail.com</p>
+            </Spacer>
           </Paper>
           </Spacer>
         </div>

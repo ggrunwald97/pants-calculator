@@ -13,7 +13,8 @@
     "react-dom": "^16.8.6",
     "react-open-weather": "^0.4.0",
     "react-scripts": "3.0.0",
-    "terra-spacer": "^3.46.0"
+    "terra-spacer": "^3.46.0",
+    "terra-text": "^4.36.0"
   },
   "scripts": {
     "start": "react-scripts start",
